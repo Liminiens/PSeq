@@ -15,7 +15,7 @@ let failTestWith (str: string) (output: string -> unit) =
     do output str 
     failTest()
 
-type Tests(output: ITestOutputHelper) =
+type PSeq_Tests(output: ITestOutputHelper) =
     
     member private __.MapWithSideEffectsTester (map : (int -> int) -> seq<int> -> pseq<int>) expectExceptions =
         let i = ref 0

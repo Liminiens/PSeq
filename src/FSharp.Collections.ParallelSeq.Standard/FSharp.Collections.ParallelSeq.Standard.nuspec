@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Unofficial port of PSeq library to .NET Standard. Parallel sequence operators for F#. See the original documentation: http://fsprojects.github.io/FSharp.Collections.ParallelSeq/</description>
+    <releaseNotes>Ported PSeq library to .NET Standard 2.0</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Parallel, FSharp</tags>
+  </metadata>
+</package>

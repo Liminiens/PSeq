@@ -3,7 +3,7 @@
 
 #Nuke build
 .tmp/
-
+output/
 
 
 # User-specific files
