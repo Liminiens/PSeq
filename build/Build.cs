@@ -21,7 +21,7 @@ class Build : NukeBuild
 
     [GitRepository] readonly GitRepository GitRepository;
 
-    [Parameter] readonly string ApiKey;
+    [Parameter("API key for nuget.org")] readonly string ApiKey;
 
     Target Clean => _ => _
         .Executes(() =>

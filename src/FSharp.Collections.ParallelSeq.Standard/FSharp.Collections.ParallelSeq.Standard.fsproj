@@ -4,6 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\FSharp.Collections.ParallelSeq.Standard.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\FSharp.Collections.ParallelSeq.Standard.XML</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="pseq.fs" />
   </ItemGroup>
