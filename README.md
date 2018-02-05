@@ -9,6 +9,6 @@ Changed NUnit tests to Xunit and build infrastructure to [NUKE Build](https://gi
 ## Build
 To build, run:
 ```
-\build.ps1 -target Compile -configuration Release
+.\build.ps1 -target Compile -configuration Release
 ```
 Library will be in a `output/lib` folder
