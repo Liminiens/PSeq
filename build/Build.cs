@@ -50,7 +50,7 @@ class Build : NukeBuild
         .DependsOn(Compile)
         .Executes(() =>
         {
-            DotNetTest();
+            DotNetTest(s =>s.SetProjectFile(SolutionDirectory / "tests" / "FSharp.Collections.ParallelSeq.Standard.Tests" / "FSharp.Collections.ParallelSeq.Standard.Tests.fsproj"));
         });
 
     Target Pack => _ => _
