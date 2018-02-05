@@ -59,8 +59,14 @@ class Build : NukeBuild
         {
             DotNetPack(s =>
                 s.SetOutputDirectory(OutputDirectory / "packages")
-                 .SetVersion(GitVersion.SemVer)
-                 .SetIncludeSymbols(true));
+                    .SetAuthors("Liminiens")
+                    .SetPackageLicenseUrl("https://github.com/Liminiens/PSeq/blob/master/LICENSE")
+                    .SetPackageProjectUrl("https://github.com/Liminiens/PSeq")
+                    .SetDescription("Unofficial port of PSeq library to .NET Standard. Parallel sequence operators for F#. See the original documentation: http://fsprojects.github.io/FSharp.Collections.ParallelSeq/")
+                    .SetPackageTags("Parallel FSharp")
+                    .SetCopyright("Copyright 2018")
+                    .SetVersion(GitVersion.SemVer)
+                    .SetIncludeSymbols(true));
         });
 
     Target Publish => _ => _
@@ -74,7 +80,7 @@ class Build : NukeBuild
                 DotNetNuGetPush(s => s
                     .SetTargetPath(package)
                     .SetApiKey(ApiKey)
-                    .SetSource("http://192.168.0.66:8081/repository/nuget-hosted/"));
+                    .SetSource("http://192.168.0.16:8081/repository/nuget-hosted/"));
             }
         });
 }
