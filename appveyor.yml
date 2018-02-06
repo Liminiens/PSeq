@@ -19,7 +19,8 @@ for:
       - master
       
   environment:
-    NuGet: AgGuN2dj1G3cBYu4MCnpxLzXxbJjLzpbkW/2/kQFVblitZ1T4W2U5zlVKr3q7lb4
+    NuGet:
+      secure: AgGuN2dj1G3cBYu4MCnpxLzXxbJjLzpbkW/2/kQFVblitZ1T4W2U5zlVKr3q7lb4
     
   after_test:
     - ps: .\build.ps1 -configuration Release -target Pack
