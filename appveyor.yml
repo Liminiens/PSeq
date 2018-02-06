@@ -19,8 +19,8 @@ for:
       - master
       
   environment:
-    NuGet:
-      secure: AgGuN2dj1G3cBYu4MCnpxLzXxbJjLzpbkW/2/kQFVblitZ1T4W2U5zlVKr3q7lb4
+    nuget_key:
+      secure: NoJMfg7DpysOutQMTKPqNgT+a2Lk5AntpM7tFNcxkeyNYY32IOVV9DJiQswm8o+i
     
   after_test:
     - ps: .\build.ps1 -configuration Release -target Pack
@@ -29,4 +29,4 @@ for:
     - path: 'output\packages\*.nupkg'
     
   deploy_script:
-    - ps: .\build.ps1 -configuration Release -target Publish -ApiKey $env:NuGet
+    - ps: .\build.ps1 -configuration Release -target Publish -ApiKey "$env:nuget_key"
