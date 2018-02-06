@@ -1,15 +1,29 @@
-version: 1.0.{build}-{branch}
-image: Visual Studio 2017
-environment:
-  NuGet: a2NMkYADRjkx04ZF09emp2hncwtVF6MfLvckIlXXVrHvySEduX/NfqVcmio4lI39
-cache: 
-  - .tmp
-  - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
-before_build:
-  - ps: gitversion /l console /output buildserver
-build_script:
-  - ps: .\build.ps1 -configuration Release -target Compile
-test_script:
-  - ps: .\build.ps1 -configuration Release -target Test
-artifacts:
-  - path: 'output\packages\*.nupkg'
+-
+  branches:
+    only:
+      - master
+  image: Visual Studio 2017
+  environment:
+    NuGet: a2NMkYADRjkx04ZF09emp2hncwtVF6MfLvckIlXXVrHvySEduX/NfqVcmio4lI39
+  cache: 
+    - .tmp
+  before_build:
+    - ps: gitversion /l console /output buildserver
+  build_script:
+    - ps: .\build.ps1 -configuration Release -target Compile
+  test_script:
+    - ps: .\build.ps1 -configuration Release -target Test
+  after_test:
+    - ps: .\build.ps1 -configuration Release -target Pack
+  artifacts:
+    - path: 'output\packages\*.nupkg'
+- 
+  image: Visual Studio 2017
+  cache: 
+    - .tmp
+  before_build:
+    - ps: gitversion /l console /output buildserver
+  build_script:
+    - ps: .\build.ps1 -configuration Release -target Compile
+  test_script:
+    - ps: .\build.ps1 -configuration Release -target Test
