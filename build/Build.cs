@@ -50,7 +50,7 @@ class Build : NukeBuild
         .DependsOn(Compile)
         .Executes(() =>
         {
-            DotNetTest(s =>s.SetProjectFile(SolutionDirectory / "tests" / "FSharp.Collections.ParallelSeq.Standard.Tests" / "FSharp.Collections.ParallelSeq.Standard.Tests.fsproj"));
+            DotNetTest(s => s.SetProjectFile(SolutionDirectory / "tests" / "FSharp.Collections.ParallelSeq.Standard.Tests" / "FSharp.Collections.ParallelSeq.Standard.Tests.fsproj"));
         });
 
     Target Pack => _ => _
@@ -74,7 +74,7 @@ class Build : NukeBuild
         .DependsOn(Pack)
         .Executes(() =>
         {
-            var packages = GlobFiles(OutputDirectory / "packages", "*.nupkg");
+            var packages = GlobFiles(OutputDirectory / "packages", "*.nupkg").Where(x => !x.Contains(".symbols."));
             foreach (var package in packages)
             {
                 DotNetNuGetPush(s => s
