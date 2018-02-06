@@ -12,3 +12,19 @@ To build, run:
 .\build.ps1 -target Compile -configuration Release
 ```
 Library will be in a `output/lib` folder
+
+## Test
+To test, run:
+```
+.\build.ps1 -target Test -configuration Release
+```
+## Pack
+```
+.\build.ps1 -target Pack -configuration Release
+```
+Packages will be in a `output/packages` folder
+## Publish
+To publish to nuget.org, run
+```
+.\build.ps1 -target Publish -configuration Release -ApiKey your_key
+```
