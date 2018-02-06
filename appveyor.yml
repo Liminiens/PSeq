@@ -26,4 +26,6 @@ for:
     
   artifacts:
     - path: 'output\packages\*.nupkg'
-  
+    
+  deploy_script:
+    - ps: .\build.ps1 -configuration Release -target Publish -ApiKey $env:NuGet
