@@ -1,4 +1,4 @@
-# PSeq [![Build status](https://ci.appveyor.com/api/projects/status/x6dm425cdhvr176r/branch/master?svg=true)](https://ci.appveyor.com/project/Liminiens/pseq/branch/master)
+# PSeq [![Build status](https://ci.appveyor.com/api/projects/status/x6dm425cdhvr176r/branch/master?svg=true)](https://ci.appveyor.com/project/Liminiens/pseq/branch/master) [![NuGet](https://img.shields.io/badge/NuGet--red.svg)](https://www.nuget.org/packages/FSharp.Collections.ParallelSeq.Standard/)
 
 Port of [FSharp.Collections.ParallelSeq](https://github.com/fsprojects/FSharp.Collections.ParallelSeq) to .NET Standard 2.0
 
