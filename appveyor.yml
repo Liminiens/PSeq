@@ -1,4 +1,10 @@
 version: 1.0.{build}
+image: Visual Studio 2017
+environment:
+  NuGet: a2NMkYADRjkx04ZF09emp2hncwtVF6MfLvckIlXXVrHvySEduX/NfqVcmio4lI39
+install:
+- ps: GitVersion init /output buildserver
+cache: .tmp
 build_script:
 - ps: .\build.ps1 -configuration Release -target Compile
 test_script:
