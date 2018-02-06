@@ -1,11 +1,25 @@
-version: 1.0.{build}
+version: 1.0.{build}-{branch}
 image: Visual Studio 2017
+init:
+- ps: >-
+    if ($env:APPVEYOR_REPO_TAG -eq "true")
+    {
+        Update-AppveyorBuild -Version "$($env:APPVEYOR_REPO_TAG_NAME.TrimStart("v"))"
+    }
+    else
+    {
+        Update-AppveyorBuild -Version "dev-$($env:APPVEYOR_REPO_COMMIT.Substring(0, 7))"
+    }
 environment:
   NuGet: a2NMkYADRjkx04ZF09emp2hncwtVF6MfLvckIlXXVrHvySEduX/NfqVcmio4lI39
 install:
 - ps: GitVersion init /output buildserver
-cache: .tmp
+cache: 
+  - .tmp
+  - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 build_script:
-- ps: .\build.ps1 -configuration Release -target Compile
+  - ps: .\build.ps1 -configuration Release -target Compile
 test_script:
-- ps: .\build.ps1 -configuration Release -target Test
+  - ps: .\build.ps1 -configuration Release -target Test
+artifacts:
+  - path: 'output\packages\*.nupkg'
