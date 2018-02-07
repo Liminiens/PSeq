@@ -42,8 +42,9 @@ class Build : NukeBuild
         .Executes(() =>
         {
             DotNetBuild(s =>
-                DefaultDotNetBuild.SetAssemblyVersion(GitVersion.AssemblySemVer)
-                .SetOutputDirectory(OutputDirectory / "lib"));
+                DefaultDotNetBuild
+                    .SetAssemblyVersion(GitVersion.AssemblySemVer)
+                    .SetOutputDirectory(OutputDirectory / "lib"));
         });
 
     Target Test => _ => _
@@ -54,7 +55,7 @@ class Build : NukeBuild
         });
 
     Target Pack => _ => _
-        .DependsOn(Compile)
+        .DependsOn(Test)
         .Executes(() =>
         {
             DotNetPack(s =>
