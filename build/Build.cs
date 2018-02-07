@@ -43,15 +43,17 @@ class Build : NukeBuild
         {
             DotNetBuild(s =>
                 DefaultDotNetBuild
+                    .SetFileVersion(GitVersion.FullSemVer)
                     .SetAssemblyVersion(GitVersion.AssemblySemVer)
                     .SetOutputDirectory(OutputDirectory / "lib"));
         });
 
     Target Test => _ => _
-        .DependsOn(Compile)
         .Executes(() =>
         {
-            DotNetTest(s => s.SetProjectFile(SolutionDirectory / "tests" / "FSharp.Collections.ParallelSeq.Standard.Tests" / "FSharp.Collections.ParallelSeq.Standard.Tests.fsproj"));
+            DotNetTest(s =>
+                s.SetProjectFile(SolutionDirectory / "tests" / "FSharp.Collections.ParallelSeq.Standard.Tests" / "FSharp.Collections.ParallelSeq.Standard.Tests.fsproj")
+                .SetConfiguration(Configuration));
         });
 
     Target Pack => _ => _
