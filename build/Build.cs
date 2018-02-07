@@ -42,19 +42,22 @@ class Build : NukeBuild
         .Executes(() =>
         {
             DotNetBuild(s =>
-                DefaultDotNetBuild.SetAssemblyVersion(GitVersion.AssemblySemVer)
-                .SetOutputDirectory(OutputDirectory / "lib"));
+                DefaultDotNetBuild
+                    .SetFileVersion(GitVersion.FullSemVer)
+                    .SetAssemblyVersion(GitVersion.AssemblySemVer)
+                    .SetOutputDirectory(OutputDirectory / "lib"));
         });
 
     Target Test => _ => _
-        .DependsOn(Compile)
         .Executes(() =>
         {
-            DotNetTest(s => s.SetProjectFile(SolutionDirectory / "tests" / "FSharp.Collections.ParallelSeq.Standard.Tests" / "FSharp.Collections.ParallelSeq.Standard.Tests.fsproj"));
+            DotNetTest(s =>
+                s.SetProjectFile(SolutionDirectory / "tests" / "FSharp.Collections.ParallelSeq.Standard.Tests" / "FSharp.Collections.ParallelSeq.Standard.Tests.fsproj")
+                .SetConfiguration(Configuration));
         });
 
     Target Pack => _ => _
-        .DependsOn(Compile)
+        .DependsOn(Test)
         .Executes(() =>
         {
             DotNetPack(s =>
